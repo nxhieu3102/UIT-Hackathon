@@ -28,7 +28,6 @@ const App = () => {
               </LoginProvide>
             } />
           </Fragment>
-
         }
       </Routes>
     </Router>

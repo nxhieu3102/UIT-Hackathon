@@ -1,19 +1,35 @@
-.footer{
-
+.footer {
+    background-color: #65a768;
+    padding: 50px 200px;
+    color: #737373;
 }
 
-.about{
-
+.footer a{
+    text-decoration: none;
+    color: #737373;
 }
 
-.about-us{
-
+.about {
+    display: flex;
+    justify-content: space-between;
 }
 
-.quick-acess{
+.about-us {
+}
+.about-us > h1 {
+    color: white;
+    font-weight: 400;
+}
+.quick-access {
+}
+.quick-access > h1 {
+    color: white;
+    font-weight: 400;
+}
+.classify {
 
 }
-
-.classify{
-  
+.classify > h1 {
+    color: white;
+    font-weight: 400;
 }
