@@ -6,7 +6,7 @@ import logo from '~/assets/images/logo_black.png'
 import { Fragment, useContext, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleXmark } from '@fortawesome/free-solid-svg-icons';
-import {loginStateContext} from '~/provider/LoginProvide'
+import {loginStateContext} from '~/provider/LoginProvider'
 
 const SignUp = ({ isSignUp, HandleSignUp}) => {
     const {loginState} = useContext(loginStateContext);

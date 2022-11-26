@@ -1,7 +1,7 @@
 import { Fragment, useState, useContext } from 'react';
 import './index.css'
 import SignUp from './SignUp';
-import {loginStateContext} from '~/provider/LoginProvide'
+import {loginStateContext} from '~/provider/LoginProvider'
 
 function Home() {
     const {loginState} = useContext(loginStateContext);
