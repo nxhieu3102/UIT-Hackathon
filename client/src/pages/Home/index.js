@@ -6,6 +6,8 @@ import Experience from './Experience';
 import Footer from './Footer';
 import Target from './Target';
 import {loginStateContext} from '~/provider/LoginProvider'
+import Intro from './Intro';
+import Donors from './Donors';
 
 function Home() {
     const {loginState} = useContext(loginStateContext);
@@ -14,19 +16,23 @@ function Home() {
     const HandleSignUp = () => {
         setSignUp(!isSignUp)
     }
+
+    // {loginState===false && <SignUp isSignUp={isSignUp} HandleSignUp={HandleSignUp} />}
+    //         {
+    //             isSignUp === false && loginState===false  &&
+    //             <div className='home-wrapper'>
+    //                 <p className='home-page-text'>Welcome to Smthland</p>
+    //                 <div onClick={HandleSignUp} className='sign-up'>Get Start</div>
+    //             </div>
+    //         }
     return (
         <Fragment>
-            {loginState===false && <SignUp isSignUp={isSignUp} HandleSignUp={HandleSignUp} />}
-            {
-                isSignUp === false && loginState===false  &&
-                <div className='home-wrapper'>
-                    <p className='home-page-text'>Welcome to Smthland</p>
-                    <div onClick={HandleSignUp} className='sign-up'>Get Start</div>
-                </div>
-            }
+            
+            <Intro/>
             <Target/>
             <Event/>
             <Experience/>
+            <Donors/>
             <Footer/>
         </Fragment>
     );

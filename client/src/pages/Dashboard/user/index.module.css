@@ -107,7 +107,9 @@
     outline: none;
     border: none;
     font-size: 1.6rem;
-    width: 100%;
+    width: 90%;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
 }
 
 .campaign-item{
@@ -118,6 +120,44 @@
     margin-right: 40px;
     border-radius: 5px;
     padding: 12px;
+    align-items: center;
+}
+
+.campaign-item--selected{
+    width: 90%;
+    margin-top: 0 !important;
+}
+
+.campaign-item--selected-wrap{
+    margin-top: 10px;
+    background-color: #ffffff;
+    width: 500px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.campaign-item--selected-wrap  img{
+    display: block;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.wrap-img{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #C3CAD9;
+    border-radius: 20px;
+    width: 30px;
+    height: 30px;
+    margin-right: 8px;
+}
+
+.wrap-img:hover{
+    opacity: 0.8;
 }
 
 .campaign-item:hover {
@@ -129,9 +169,6 @@
     height: 40px;
 }
 
-.form-search-input:focus .campaign-list{
-    display: block;
-}
 
 .campaign-list{
     display: none;
@@ -141,12 +178,16 @@
     padding-top: 30px;
     padding-bottom: 30px;
     border-radius: 5px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
     max-height: 300px;
     overflow-y: scroll;
+    top: 20px;
 }
 
 .campaign-item__location{
     display: flex;
+    align-items: center;
 }
 
 .campaign-item__text{
@@ -155,4 +196,30 @@
 
 .campaign-item__date{
     text-align: right;
+}
+
+.trash-type{
+    margin-top: 12px;
+    width: 500px;
+    display: flex;
+    justify-content: space-between;
+    background-color: white;
+    border-radius: 20px;
+    align-items: center;
+}
+
+
+.trash-type>p{
+    font-size: 16px;
+
+}
+
+.trash-type>input{
+    width: 100px;
+    border-radius: 20px;
+}
+
+.wrap-img > img{
+    width: 20px;
+    height: 20px;
 }

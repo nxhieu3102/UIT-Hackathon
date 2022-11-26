@@ -5,6 +5,8 @@ import Dashboard from "./components/Layout/Dashboard";
 import Home from "./pages/Home";
 import { LoginProvide } from "./provider/LoginProvider";
 import DashboardPage from "./pages/Dashboard";
+import Login from "./pages/Login";
+import SignUp from "./pages/SignUp";
 
 const App = () => {
   return (
@@ -27,8 +29,23 @@ const App = () => {
                 </Dashboard>
               </LoginProvide>
             } />
-          </Fragment>
 
+            <Route path="/LogIn" element={
+              <LoginProvide>
+                <Layout>
+                  <Login />
+                </Layout>
+              </LoginProvide>
+            } />
+
+            <Route path="/SignUp" element={
+              <LoginProvide>
+                <Layout>
+                  <SignUp/>ư
+                </Layout>
+              </LoginProvide>
+            } />
+          </Fragment>
         }
       </Routes>
     </Router>
