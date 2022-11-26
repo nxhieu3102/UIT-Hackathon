@@ -7,7 +7,7 @@ class UserController {
 
     async creatNewAccount(req, res, next) {
         // Check cheater
-        if (!req.body.username || !req.body.password || !req.body.address || !req.body.phone || !req.body.address2) {
+        if (!req.body.email || !req.body.password || !req.body.address || !req.body.phone || !req.body.address2) {
             next({
                 invalidFields: true,
                 message: "Invalid fields"
@@ -24,19 +24,23 @@ class UserController {
         }
         const newUser = new User({
             _id: new mongoose.Types.ObjectId(),
-            user_name: req.body.username,
+            email: req.body.email,
+            name: req.body.name,
             password: hashedPassword,
             address2: req.body.address2,
             address: req.body.address,
             phone: req.body.phone,
+            role: req.body.role,
         })
+
+        console.log(newUser);
         try {
             await newUser.save();
         } catch (err) {
             next({
                 success: false,
-                message: "existed",
-                existed: true
+                message: "error",
+                error: err,
             });
             return;
         }
@@ -48,7 +52,7 @@ class UserController {
     }
 
     async verifyAccount(req, res, next) {
-        if (!req.body.username || !req.body.password) {
+        if (!req.body.email || !req.body.password) {
             next({
                 success: false,
                 message: "Invalid fields",
@@ -56,7 +60,7 @@ class UserController {
             })
             return;
         }
-        const user = await User.findOne({ user_name: req.body.username })
+        const user = await User.findOne({ email: req.body.email })
 
         console.log(user);
         if (user) {
@@ -65,10 +69,11 @@ class UserController {
                 if (check) {
                     const token = jwt.sign({
                         user: {
-                            username: user.user_name,
+                            email: user.email,
                             userId: user._id,
                             address2: user.address2,
-                            address: user.address
+                            address: user.address,
+                            role: user.role
                         },
                     },
                         process.env.SECRET_KEY_TOKEN,
