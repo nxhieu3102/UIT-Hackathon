@@ -1,6 +1,3 @@
-const db = require('./DatabaseController.js');
-db.connect(process.env.MONGODB_URI)
-
 const mongoose = require('mongoose')
 const User = require('../model/User.js');
 const bcrypt = require('bcryptjs');
@@ -10,8 +7,11 @@ class UserController {
 
     async creatNewAccount(req, res, next) {
         // Check cheater
-        if (!req.body.username || !req.body.password || !req.body.address || !req.body.avatar) {
-            next({ message: "Invalid fields" })
+        if (!req.body.username || !req.body.password || !req.body.address || !req.body.phone || !req.body.address2) {
+            next({
+                invalidFields: true,
+                message: "Invalid fields"
+            })
             return;
         }
         let hashedPassword
@@ -26,28 +26,34 @@ class UserController {
             _id: new mongoose.Types.ObjectId(),
             user_name: req.body.username,
             password: hashedPassword,
-            avatar: req.body.avatar,
+            address2: req.body.address2,
             address: req.body.address,
+            phone: req.body.phone,
         })
         try {
             await newUser.save();
         } catch (err) {
-            next({ 
+            next({
                 success: false,
-                message: "existed" });
+                message: "existed",
+                existed: true
+            });
             return;
         }
-        res.send({ 
+        res.send({
             success: true,
             message: "sucessfully",
-            user: newUser 
+            user: newUser
         });
     }
 
     async verifyAccount(req, res, next) {
-
         if (!req.body.username || !req.body.password) {
-            next({ mess: "Invalid account" })
+            next({
+                success: false,
+                message: "Invalid fields",
+                invalidFields : true
+            })
             return;
         }
         const user = await User.findOne({ user_name: req.body.username })
@@ -58,10 +64,10 @@ class UserController {
                 let check = await bcrypt.compare(req.body.password, user.password)
                 if (check) {
                     const token = jwt.sign({
-                        user:{
+                        user: {
                             username: user.user_name,
                             userId: user._id,
-                            avatar: user.avatar,
+                            address2: user.address2,
                             address: user.address
                         },
                     },
@@ -73,10 +79,17 @@ class UserController {
                     res.cookie('token', token, {
                         expires: new Date(Date.now() + 80 * 3600)
                     })
-                    res.send({ message: "Sucessfully" })
+                    res.send({
+                        success: true,
+                        message: "sucessfully"
+                    })
                 }
                 else {
-                    res.send({ message: "Wrong information" });
+                    res.send({
+                        success: false,
+                        message: "wrong information",
+                        wrongInformation: true,
+                    });
                     return;
                 }
             } catch (err) {
@@ -85,13 +98,11 @@ class UserController {
             }
         }
         else {
-            res.send({ message: "Wrong information" });
+            res.send({ success: false, message: "Wrong information" });
             return;
         }
-
-       
     }
-    
+
 
 }
 module.exports = new UserController;

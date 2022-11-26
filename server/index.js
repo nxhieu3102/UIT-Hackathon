@@ -1,12 +1,13 @@
 const express = require("express");
 const morgan = require('morgan');
-require("dotenv").config();
 const cors = require('cors'); //avoid cors error
 const cookieParser = require('cookie-parser')
 
 const router = require('./router')
 const app = express();
 
+require("dotenv").config();
+require('./DatabaseController.js').connect(process.env.MONGODB_URI)
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
