@@ -7,6 +7,6 @@ const authMiddleware = require('../middleware/AuthMiddleware')
 
 router.use(authMiddleware.isContributor)
 
-router.post('/add-newpart',ContributorController.requestPartnerRole);
+router.post('/become-partner',ContributorController.requestPartnerRole);
 
 module.exports = router

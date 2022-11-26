@@ -17,7 +17,7 @@ const billSchema = mongoose.Schema({
     },
 
     status: {
-        type: Boolean,
+        type: Number,
         enum: Object.values(BillStatusEnum),
         default: BillStatusEnum.contributor 
     },

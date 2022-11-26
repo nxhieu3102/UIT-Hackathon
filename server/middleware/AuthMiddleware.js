@@ -3,6 +3,7 @@ const { UserRoleEnum } = require('../constants/Enum')
 var AuthMiddleware = {
     authorizeUser: function(req, res, next, role) {
         data = tokenHelper.getDataFromToken(req.cookies.token)
+        console.log('middleware',data,'\n')
         if (data === 0 || !data.user || data.user.role!=role)
             res.status(403).send({
                 status: 403,

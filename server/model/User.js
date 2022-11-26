@@ -36,7 +36,7 @@ const user = new Schema(
         },
 
         role: {
-            type: String,
+            type: Number,
             enum: Object.values(UserRoleEnum),
             default: UserRoleEnum.contributor 
         },
