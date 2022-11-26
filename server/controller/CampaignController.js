@@ -3,7 +3,7 @@ const Campaign = require("../model/Campaign")
 
 const CampaignController = {
 
-    //create coffee
+    //create campaign
     createCampaign: async(req, res) => {
         const userRole = res.user.role;
         if(userRole === "partner")
@@ -30,7 +30,7 @@ const CampaignController = {
                     success: false,
                     error: error
                 })
-            }
+            }   
         }
         else
         {
@@ -41,15 +41,6 @@ const CampaignController = {
         }
     },
 
-    //get all coffee
-    getAllCoffee: async (req, res) => {
-        try {
-            const allCoffees = await Coffee.find();
-            res.status(200).json(allCoffees);
-        } catch (error) {
-            res.status(500).json(error);
-        }
-    }
 
 }
 

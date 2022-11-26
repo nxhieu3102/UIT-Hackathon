@@ -2,19 +2,20 @@ const express = require("express");
 const morgan = require('morgan');
 const cors = require('cors'); //avoid cors error
 const cookieParser = require('cookie-parser')
-
+var bodyParser = require('body-parser');
 const router = require('./router')
 const app = express();
 require("dotenv").config();
 require('./controller/DatabaseController').connect(process.env.MONGODB_URI)
 
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+// app.use(express.json());
 // cookieParser middleware
 app.use(cookieParser())
 
 const PORT = process.env.PORT || 3001;
 
+app.use(bodyParser.json({limit:"50mb"}));
 app.use(morgan('combined'));
 app.use(cors());  //avoid "cors" error
 app.use("/api",router);
