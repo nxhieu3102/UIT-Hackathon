@@ -120,10 +120,10 @@ const Header = () => {
     return (
         <Fragment>
             <div className={clsx(styles["navbar"])}>
-                <div className={clsx(styles["logo-name"])}>
+                <Link to='/' className={clsx(styles["logo-name"])}>
                     <img src={logo} alt="" className={clsx(styles["logo-img"])} />
                     <p className={clsx(styles["name"])}>CollectMe</p>
-                </div>
+                </Link>
                 <div className={clsx(styles["menu"])}>
                     <div className={clsx(styles["menu-list"], styles["menu-list-1"])}>
                         Trang chủ
@@ -135,9 +135,9 @@ const Header = () => {
                         Sự kiện
                     </div>
                 </div>
-                <div className={clsx(styles["login-item"])}>
-                    <button className={clsx(styles["login"])} >Đăng nhập</button>
-                </div>
+                <Link to='/Login' className={clsx(styles["login-item"])}>
+                    <button className={clsx(styles["login-btn"])} >Đăng nhập</button>
+                </Link>
             </div>
 
 
