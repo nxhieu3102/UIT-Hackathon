@@ -41,7 +41,7 @@ const App = () => {
             <Route path="/SignUp" element={
               <LoginProvide>
                 <Layout>
-                  <SignUp/>ư
+                  <SignUp/>
                 </Layout>
               </LoginProvide>
             } />

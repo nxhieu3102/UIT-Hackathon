@@ -17,7 +17,7 @@ const Header = () => {
                     <img className={clsx(styles["user-account"])} src={account} alt='account' />
                     <img className={clsx(styles["user-down"])} src={down} alt='down' />
                     <div className={clsx(styles["user-elements"])}>
-                        <div className={clsx(styles["user-element"])}>Dashboard</div>
+                        <Link to='/dashboard' className={clsx(styles["user-element"])}>Dashboard</Link>
                         <div className={clsx(styles["user-element"])}>Log out</div>
                     </div>
                 </div>

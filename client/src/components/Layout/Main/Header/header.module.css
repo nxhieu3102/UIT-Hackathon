@@ -123,6 +123,61 @@
   margin-right: 2%;
   margin-top: 1%;
 }
+
+
+.user{
+  margin-right: 20px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+}
+
+.user:hover 
+.user-elements{
+  display: block;
+}
+.user-account{
+  width: 40px;
+  height: 40px;
+  margin-right: 8px;
+  filter: invert(34%) sepia(15%) saturate(1053%) hue-rotate(182deg) brightness(99%) contrast(91%);
+}
+
+.user-down{
+  width: 20px;
+  height: 20px;
+  filter: invert(34%) sepia(15%) saturate(1053%) hue-rotate(182deg) brightness(99%) contrast(91%);
+}
+
+.user-elements::before{
+  content: "";
+  width: 100px;
+  height: 20px;
+  position: absolute;
+  top: -20px;
+}
+
+.user-elements{
+  position: absolute;
+  top: 50px;
+  padding: 0 20px;
+  right: 0px;
+  display: none;
+  background-color: #ccc;
+  border-radius: 5px;
+}
+
+.user-element{
+  padding: 0 10px;
+  padding-top: 10px;
+}
+
+
+
+.user-element:last-child{
+  padding-bottom: 10px;
+}
 /* CSS */
 /*
 .login {

@@ -4,11 +4,16 @@ import clsx from 'clsx'
 import search from '~/assets/images/Dashboard/search.png'
 import plastic from '~/assets/images/Dashboard/Plastic.png'
 import close from '~/assets/images/Dashboard/close.png'
+import plus from '~/assets/images/Dashboard/plus.png'
+import confetti from '~/assets/images/Dashboard/confetti.png'
+import wreath from '~/assets/images/Dashboard/wreath.png'
 const DashboardUser = () => {
     const API = 'https://6381f08c53081dd5498bea48.mockapi.io/api/v1/campaign'
+    const API_SUBMIT_CONTRIBUTE = ''
     const [inforCampain, setInforCampain] = useState([])
     const [chooseCampain, setChooseCampain] = useState(null)
     const ref = useRef(null)
+    const trashType = ['Rác thải Nhựa', 'Vải thừa', 'Lon nước']
 
     const handleSelectCampain = async (ev) => {
         const campainId = ev.currentTarget.getAttribute("data-campain")
@@ -24,6 +29,43 @@ const DashboardUser = () => {
         setChooseCampain(null)
         const element = document.getElementById('campaign-list')
         element.style.display = 'none'
+    }
+
+    const handleClickAddTrash = (ev) => {
+        const element = document.getElementById('trash-list')
+        element.style.display = 'block'
+    }
+
+    const HandleAddDonation = (ev) => {
+        const element = document.getElementById('campain-form')
+        element.style.display = 'flex'
+    }
+
+    const handleCloseCampainForm = (ev) => {
+        const element = document.getElementById('campain-form')
+        element.style.display = 'none'
+
+    }
+
+    const handleSubmitFormCompain = async () => {
+        const rubbish = [{ plastic: document.getElementById("trash-quantity-0").value }, {}, { paper: document.getElementById("trash-quantity-1").value }, { cloth: document.getElementById("trash-quantity-2").value }]
+        const contribute = {
+            campainId: chooseCampain.id,
+            rubbish: rubbish
+        }
+
+        const response = await fetch(API_SUBMIT_CONTRIBUTE, {
+            method: 'POST',
+            mode: 'cors',
+            cache: 'no-cache',
+            credentials: 'same-origin',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            redirect: 'follow',
+            referrerPolicy: 'no-referrer',
+            body: JSON.stringify(contribute)
+        });
     }
 
     useEffect(() => {
@@ -60,10 +102,14 @@ const DashboardUser = () => {
             <div className={clsx(styles["dashboard"])}>
                 <div className={clsx(styles["content"])}>
                     <p className={clsx(styles["content-name"])}>Nguyễn Văn An</p>
+                    <div className={clsx(styles["achivement"])}>
+                        <img className={clsx(styles["achivement-bg"])} src={confetti} alt='' />
+                        <img className={clsx(styles["achivement-main"])} src={wreath} alt='' />
+                        </div>
                 </div>
                 <div className={clsx(styles["details"])}>
                     <div className={clsx(styles["details-header"])}>
-                        <div className={clsx(styles["add-donations"])}>
+                        <div onClick={HandleAddDonation} className={clsx(styles["add-donations"])}>
                             <p className={clsx(styles["add-donations-plus"])}>+</p>
                             <p className={clsx(styles["add-donations-text"])}>Tạo quyên góp mới</p>
                         </div>
@@ -74,14 +120,17 @@ const DashboardUser = () => {
                         </div>
                     </div>
                     <div className={clsx(styles["details-content"])}>
-                        <div className={clsx(styles["campaign-form"])}>
+                        <div id="campain-form" className={clsx(styles["campaign-form"])}>
                             <div className={clsx(styles["form-search"])}>
                                 <img className={clsx(styles["form-search-icon"])} src={search} alt='' />
                                 <input onFocus={display} className={clsx(styles["form-search-input"])} placeholder="Tìm kiếm chiến dịch" />
                             </div>
+                            <div onClick={handleCloseCampainForm} id='close-campain-form' className={clsx(styles["wrap-img"], styles["close-form"])}>
+                                <img src={close} alt='' />
+                            </div>
                             <ul className={clsx(styles["campaign-list"])} id='campaign-list'>
                                 {inforCampain.map((item, index) => {
-                                    return <li ref={ref} data-campain={index} onClick={handleSelectCampain} key={index} className={clsx(styles["campaign-item"])}>
+                                    return <li ref={ref} data-campain={item.id} onClick={handleSelectCampain} key={index} className={clsx(styles["campaign-item"])}>
                                         <div className={clsx(styles["campaign-item__location"])}>
                                             <img src={plastic} className={clsx(styles["campaign-item__icon"])} alt='' />
                                             <div className={clsx(styles["campaign-item__text"])}>
@@ -117,14 +166,28 @@ const DashboardUser = () => {
                                     </div>
                                 </div>
                             }
-                            <div className={clsx(styles["trash-type"])}>
-                                <img src={plastic} alt=''/>
-                                <p>Rác thải nhựa</p>
-                                <input placeholder="Số lượng" type='number'></input>
-                                <div onClick={handleRemoveCampain} className={clsx(styles["wrap-img"])}>
-                                    <img src={close} alt='' />
+
+                            <div className={clsx(styles["trash-input-wrap"])}>
+                                <div className={clsx(styles["trash-input"])}>Thêm loại rác</div>
+                                <div onClick={handleClickAddTrash} className={clsx(styles["trash-input-plus"])}>
+                                    <img src={plus} alt='' />
                                 </div>
                             </div>
+
+                            <div id="trash-list" className={clsx(styles["trash-wrap"])}>
+                                {trashType.map((element, index) => {
+                                    return (
+                                        <div key={Math.random()} data-trash={index} className={clsx(styles["trash-type"])}>
+                                            <img src={plastic} alt='' />
+                                            <p>{element}</p>
+                                            <input id={"trash-quantity-" + index} min="1" placeholder="Khối lượng" type='number'></input>
+
+                                        </div>
+                                    )
+                                })}
+                            </div>
+
+                            <button onClick={handleSubmitFormCompain}>Quyên góp</button>
                         </div>
                     </div>
                 </div>
