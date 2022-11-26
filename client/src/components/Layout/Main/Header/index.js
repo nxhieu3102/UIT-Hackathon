@@ -30,7 +30,7 @@ const Header = () => {
                         Sự kiện
                     </div>
                 </div>
-                {loginState === true && <div className={clsx(styles["user"])}>
+                {loginState !== -1 && <div className={clsx(styles["user"])}>
                     <img className={clsx(styles["user-account"])} src={account} alt='account' />
                     <img className={clsx(styles["user-down"])} src={down} alt='down' />
                     <div className={clsx(styles["user-elements"])}>
@@ -38,7 +38,7 @@ const Header = () => {
                         <div className={clsx(styles["user-element"])}>Log out</div>
                     </div>
                 </div>}
-                {loginState === false && <Link to='/Login' className={clsx(styles["login-item"])}>
+                {loginState === -1 && <Link to='/Login' className={clsx(styles["login-item"])}>
                     <button className={clsx(styles["login-btn"])} >Đăng nhập</button>
                 </Link>}
 

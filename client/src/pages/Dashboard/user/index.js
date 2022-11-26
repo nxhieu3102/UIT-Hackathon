@@ -9,7 +9,7 @@ import confetti from '~/assets/images/Dashboard/confetti.png'
 import wreath from '~/assets/images/Dashboard/wreath.png'
 const DashboardUser = () => {
     const API = 'https://6381f08c53081dd5498bea48.mockapi.io/api/v1/campaign'
-    const API_SUBMIT_CONTRIBUTE = ''
+    const API_SUBMIT_CONTRIBUTE = 'http://localhost:3001/api/contributor/new-bill'
     const [inforCampain, setInforCampain] = useState([])
     const [chooseCampain, setChooseCampain] = useState(null)
     const ref = useRef(null)
@@ -48,7 +48,7 @@ const DashboardUser = () => {
     }
 
     const handleSubmitFormCompain = async () => {
-        const rubbish = [{ plastic: document.getElementById("trash-quantity-0").value }, {}, { paper: document.getElementById("trash-quantity-1").value }, { cloth: document.getElementById("trash-quantity-2").value }]
+        const rubbish = [{ category: 'plastic', weight: document.getElementById("trash-quantity-0").value }, { category: 'paper', weight: document.getElementById("trash-quantity-1").value }, { category: 'cloth', weight: document.getElementById("trash-quantity-2").value }]
         const contribute = {
             campainId: chooseCampain.id,
             rubbish: rubbish
@@ -66,6 +66,10 @@ const DashboardUser = () => {
             referrerPolicy: 'no-referrer',
             body: JSON.stringify(contribute)
         });
+
+        response.json().then((data)=>{
+            console.log(data);
+        })
     }
 
     useEffect(() => {
@@ -105,7 +109,7 @@ const DashboardUser = () => {
                     <div className={clsx(styles["achivement"])}>
                         <img className={clsx(styles["achivement-bg"])} src={confetti} alt='' />
                         <img className={clsx(styles["achivement-main"])} src={wreath} alt='' />
-                        </div>
+                    </div>
                 </div>
                 <div className={clsx(styles["details"])}>
                     <div className={clsx(styles["details-header"])}>

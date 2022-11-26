@@ -41,9 +41,11 @@ const Login = () => {
 
         response.json().then((result) => {
             console.log(result);
+            toggleLoginState(result.user.role)
+
             if (result.success === true) {
                 console.log("sucessfully");
-                toggleLoginState(true)
+                toggleLoginState(result.user.role)
                 navigate('/')
             } else {
                 setMessage("Dang nhap that bai")
@@ -69,7 +71,6 @@ const Login = () => {
 
     return (
         <Fragment>
-            {loginState === true && <redirect to='/' />}
             <div className={clsx(styles["container"])} id="container">
                 <div className={clsx(styles["form-container"], styles["sign-in-container"])}>
                     <form onSubmit={HandleSubmitLoginForm}>
