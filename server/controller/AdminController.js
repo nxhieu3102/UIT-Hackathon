@@ -1,8 +1,6 @@
-const db = require('./DatabaseController.js');
-db.connect(process.env.MONGODB_URI)
-
 const mongoose = require('mongoose')
 const User = require('../model/User.js');
+const PartnerQueue = require('../model/PartnerQueue');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken')
 
@@ -10,77 +8,49 @@ class AdminController {
 
     async creatNewPartner(req, res, next) {
         // Check cheater
-        if (!req.body.username || !req.body.password || !req.body.address || !req.body.phone || !req.body.address2) {
-            next({ message: "Invalid fields" })
+        const userId = req.user.id;
+        const newPartner = PartnerQueue.findOne({ user: mongoose.Types.ObjectId(userId) })
+        if (!newPartner || newPartner.status == 1) {
+            res.status(401)
+            res.json({
+                message: 'Invalid user to change into partner',
+                inValid: true,
+                success: false
+            })
             return;
         }
-        let hashedPassword
-        try {
-            let saltRounds = 10;
-            hashedPassword = await bcrypt.hash(req.body.password, saltRounds);
-
-        } catch (e) {
-            console.log(e)
-        }
-        const newUser = new User({
-            _id: new mongoose.Types.ObjectId(),
-            user_name: req.body.username,
-            password: hashedPassword,
-            address2: req.body.address2,
-            address: req.body.address,
-            phone: req.body.phone,
+        newPartner.status = 1;
+        newPartner.save();
+        res.status(200)
+        res.json({
+            message: 'Sucessfully',
+            success: true
         })
+
+        // udpate role in user table
         try {
-            await newUser.save();
-        } catch (err) {
-            next({
-                success: false,
-                message: "existed"
-            });
-            return;
-        }
-        res.send({
-            success: true,
-            message: "sucessfully",
-            user: newUser
-        });
+            await User.findOneAndUpdate(
+               { _id: mongoose.Types.ObjectId(userId) },
+               { $set: { "role": 1} }
+           ).exec();
+       } catch (err) {
+           console.log(err)
+           res.status(400).json(err)
+       }
+
     }
-    async creatNewAccount(req, res, next) {
-        // Check cheater
-        if (!req.body.username || !req.body.password || !req.body.address || !req.body.phone || !req.body.address2) {
-            next({ message: "Invalid fields" })
-            return;
-        }
-        let hashedPassword
-        try {
-            let saltRounds = 10;
-            hashedPassword = await bcrypt.hash(req.body.password, saltRounds);
-
-        } catch (e) {
-            console.log(e)
-        }
-        const newUser = new User({
-            _id: new mongoose.Types.ObjectId(),
-            user_name: req.body.username,
-            password: hashedPassword,
-            address2: req.body.address2,
-            address: req.body.address,
-            phone: req.body.phone,
-        })
-        try {
-            await newUser.save();
-        } catch (err) {
-            next({
-                success: false,
-                message: "existed"
-            });
-            return;
-        }
-        res.send({
-            success: true,
-            message: "sucessfully",
-            user: newUser
-        });
+    async deletePartner(req, res, next) {
+       // udpate role in user table
+       try {
+        await User.findOneAndUpdate(
+           { _id: mongoose.Types.ObjectId(req.user.id) },
+           { $set: { "role": 0} }
+       ).exec();
+   } catch (err) {
+       console.log(err)
+       res.status(400).json(err)
+       return;
+   }
     }
 
 }

@@ -5,7 +5,6 @@ const cookieParser = require('cookie-parser')
 
 const router = require('./router')
 const app = express();
-
 require("dotenv").config();
 require('./DatabaseController.js').connect(process.env.MONGODB_URI)
 
