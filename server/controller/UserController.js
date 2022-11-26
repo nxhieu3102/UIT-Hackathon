@@ -3,25 +3,26 @@ const User = require('../model/User.js');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const Campaign = require("../model/Campaign");
+const PointController = require('./PointController.js');
 class UserController {
 
-        //viewALLCampaign
-        async viewAllCampaign(req, res, next) {
-            try {
-                const campaigns = await Campaign.find();
-                res.status(200).json(
-                    {
-                        success: true,
-                        campaigns: campaigns
-                    }
-                )
-            } catch (error) {
-                res.status(500).json({
-                    success: false,
-                    error: error
-                })
-            }
+    //viewALLCampaign
+    async viewAllCampaign(req, res, next) {
+        try {
+            const campaigns = await Campaign.find();
+            res.status(200).json(
+                {
+                    success: true,
+                    campaigns: campaigns
+                }
+            )
+        } catch (error) {
+            res.status(500).json({
+                success: false,
+                error: error
+            })
         }
+    }
 
     async creatNewAccount(req, res, next) {
         // Check cheater
@@ -58,7 +59,7 @@ class UserController {
         } catch (err) {
             next({
                 success: false,
-                isDuplicated:true,
+                isDuplicated: true,
                 message: "Email has existed",
                 error: err,
             });
@@ -126,6 +127,20 @@ class UserController {
         else {
             res.send({ success: false, message: "Wrong information" });
             return;
+        }
+    }
+    async getTop8Point(req, res, next) {
+        try {
+            const data = await PointController.getTop8HiestPoint();
+            res.status(200).json({
+                success: true,
+                data: data
+            })
+        }catch(e){
+            res.status(400).json({
+                success: false,
+                err: e
+            })
         }
     }
 
