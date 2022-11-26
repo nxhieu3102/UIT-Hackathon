@@ -6,8 +6,7 @@ async function connect(envi)
         {
             useNewUrlParser:true,
             useUnifiedTopology:true,
-            dbName: 'train'
-
+            dbName: 'main'
         });
         console.log("mongo succeeded")
     } catch (error) {

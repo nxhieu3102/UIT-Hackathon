@@ -7,11 +7,11 @@
     <title>Rethink Recycle Reuse</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
     <link rel="stylesheet" href="./assests/font/fontawesome-free-5.15.4-web/css/all.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> -->
     <link rel = "stylesheet" href = "styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
 </head>
 <body>
     <div class="navbar">
@@ -19,7 +19,18 @@
             <img src="logo-img.png" alt="" class="logo-img">
             <p class = "name">CollectMe</p>
         </div>
-        <div class="menu">
+        <ul class="menu">
+          <li class="menu-list menu-list-item">
+            <a href="#">Trang chủ</a>
+          </li>
+          <li class="menu-list menu-list-item">
+            <a href="#">Tin tức</a>
+          </li>
+          <li class="menu-list menu-list-item">
+            <a href="#">Sự kiện</a>
+          </li>
+        </ul>
+        <!-- <div class="menu">
             <div class="menu-list menu-list-1 current">
                 Trang chủ
             </div>
@@ -29,38 +40,86 @@
             <div class="menu-list menu-list-3">
                 Sự kiện
             </div>
-        </div>
+        </div> -->
         <div class = "login-item">
-            <button class="login" role="login">Đăng nhập</button>
+            <button class="login-btn btn" role="login">Đăng nhập</button>
         </div>
     </div>
-    <div class = "body-1">
-        <div class = "body-1-left">
+    <div class = "row body-1">
+        <div class = "col body-1-left">
             <div class = "body-1-slogan">
-                <p class = "body-1-slogan-text">Slogan</p>
-            </div>
-            <div class = "body-1-get-started">
-                <button class="get-started" role="get-started">Tham gia</button>
+                <p class = "body-1-slogan-text">Refurbish Rething</p>
+                <button class="get-started btn" role="get-started">Tham gia</button>
             </div>
         </div>
-        <div class = "body-1-right"> 
+        <div class = "col body-1-right"> 
             <img src = "body-1-right.png" alt="" class = "body-1-right-png">
         </div>
     </div>
     <div class = "body-2">
-        <div class = "body-2-top">
+      <div class="body2-header section-header">
+        <h1 class = "section-title">
             Bạn đồng hành cho một Trái đất xanh
-        </div>
-        <div class = "body-2-bottom">
+        </h1>
+        <h2 class = "section-sub-title">
             Bạn có thể đóng góp các vật liệu sau
+        </h2>
+      <div class="body2-container">
+
+        <ul class="row body2-categories">
+          <li class="col body-2-categorise-item">
+            <div class="category-item-card">
+              <img src="../Home/icons/Plastic.png" alt="Plastic" class="cagtegory-img">
+              <h2 class="category-title">Rác thải nhựa</h2>
+              <p class="category-desc">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+              </p>
+              
+            </div>
+          </li>
+          <li class="body-2-categorise-item">
+            <div class="col category-item-card">
+              <img src="../Home/icons/Clothes.png" alt="Clothes" class="cagtegory-img">
+              <h2 class="category-title">Quần áo</h2>
+              <p class="category-desc">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+              </p>
+
+            </div>
+          </li>
+          <li class="body-2-categorise-item">
+            <div class="col category-item-card">
+              <img src="../Home/icons/Money.png" alt="Money" class="cagtegory-img">
+              <h2 class="category-title">Hiện kim</h2>
+              <p class="category-desc">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+              </p>
+
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      </div>
+
+
+      <!-- section cam nhan -->
+      <div id="feelling">
+        <div class="feeling-header section-header">
+          <h1 class="section-title">
+            Sự kiện
+          </h1>
         </div>
+        <div class = "section-breaker"></div>
+      </div>
+      <div class="feeling-container">
+        <div class="row">
+          
+        </div>
+      </div>
     </div>
     <div class = "body-3">
         <div class = "body-3-top">
             Nhà đồng hành
         </div>
-        <div class = "body-3-middle">
-        </div>
+        <div class = "section-breaker"></div>
         <div class = "body-3-right">
             <img src = "partner1.png" alt="" class = "body-3-right-left-img">
             <img src = "partner2.png" alt="" class = "body-3-right-middle-img">

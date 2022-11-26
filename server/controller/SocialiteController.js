@@ -1,11 +1,9 @@
-const db = require('./DatabaseController.js');
-db.connect(process.env.MONGODB_URI)
 const { OAuth2Client } = require('google-auth-library')
 const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID)
 const mongoose = require('mongoose')
 const User = require('../model/User.js');
 
-class AuthController {
+class SocialiteController {
     async verifyGoogleLogin(req, res, next) {
         const { token } = req.body
         try {
@@ -22,11 +20,11 @@ class AuthController {
             return
         }
 
-        const { name, email, picture } = ticket.getPayload();
+        const { name, email } = ticket.getPayload();
         try {
              await User.findOneAndUpdate(
                 { user_name: email },
-                { $set: { "name": name, "avatar": picture } },
+                { $set: { "name": name} },
                 { upsert: true, new: true },  //upsert to create a new doc if none exists and new to return the new, updated document instead of the old one. 
             ).exec();
         } catch (err) {
