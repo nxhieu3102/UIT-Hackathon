@@ -1,4 +1,6 @@
-const Campaign = require("../model/Campaign")
+const Campaign = require("../model/Campaign");
+const {BillStatusEnum} = require("../constants/Enum");
+const Bill = require("../model/Bill")
 
 const PartnerController = {
 
@@ -28,7 +30,60 @@ const PartnerController = {
             })
         }   
         
+    },
+
+    //view bills of campaign
+    viewwCampaignBills: async (req, res) => {
+        try {
+            const campaignId = req.body.campaignId;
+            const CampaignBills = await Bill.find({campaignId: campaignId}).all();
+            res.status(200).json({
+                success: true,
+                bills: CampaignBills
+            })
+            
+        } catch (error) {
+            res.status(500).json({
+                success: false,
+                error: error
+            })
+        }
+    },
+
+    //accept BILL
+    acceptBill: async(req, res) => {
+        try {
+
+            const billId = req.body.billId;
+            const bill = await Bill.findOneAndUpdate(
+                {_id: billId},
+                {status: BillStatusEnum.success})
+            
+        } catch (error) {
+            res.status(500).json({
+                success: false,
+                error: error
+            })
+        }
+    },
+
+    dennyBill: async(req, res) => {
+        try {
+
+            const billId = req.body.billId;
+            const bill = await Bill.findOneAndUpdate(
+                {_id: billId},
+                {status: BillStatusEnum.fail})
+            
+        } catch (error) {
+            res.status(500).json({
+                success: false,
+                error: error
+            })
+        }
     }
+
+
 
 
 }
