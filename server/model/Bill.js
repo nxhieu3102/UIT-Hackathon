@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-
+const { BillStatusEnum } = require('../constants/Enum')
 const billSchema = mongoose.Schema({
     userId: {
         type: mongoose.Schema.Types.ObjectId,
@@ -13,11 +13,13 @@ const billSchema = mongoose.Schema({
 
     rubbish: {
         categories: {type: [Number], default: []},
-        quantity: {type: [Number], default: []}
+        quantities: {type: [Number], default: []}
     },
 
     status: {
-        type: Boolean
+        type: Boolean,
+        enum: Object.values(BillStatusEnum),
+        default: BillStatusEnum.contributor 
     },
     
 });

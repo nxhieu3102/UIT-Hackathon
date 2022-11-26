@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 const User = require('../model/User.js');
 const PartnerQueue = require('../model/PartnerQueue');
-
+const {PartnerQueueStatusEnum} = require('../constants/Enum')
 class AdminController {
 
     async addNewPartner(req, res, next) {
@@ -9,7 +9,7 @@ class AdminController {
         console.log(req.user)
         const userId = req.user.id;
         const newPartner = PartnerQueue.findOne({ user: mongoose.Types.ObjectId(userId) })
-        if (!newPartner || newPartner.status == 1) {
+        if (!newPartner || newPartner.status == PartnerQueueStatusEnum.approved) {
             res.status(401)
             res.json({
                 message: 'Invalid user to change into partner',

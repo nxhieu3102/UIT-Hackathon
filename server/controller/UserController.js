@@ -3,6 +3,7 @@ const User = require('../model/User.js');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken')
 const PartnerQueue = require('../model/PartnerQueue');
+const { UserRoleEnum } = require('../constants/Enum')
 class UserController {
 
     async creatNewAccount(req, res, next) {
@@ -57,7 +58,7 @@ class UserController {
             next({
                 success: false,
                 message: "Invalid fields",
-                invalidFields : true
+                invalidFields: true
             })
             return;
         }
@@ -109,12 +110,6 @@ class UserController {
             return;
         }
     }
-
-
-
-    async requestPartnerRole(req,res,next){
-    }
-
 
 
 }

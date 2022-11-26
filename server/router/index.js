@@ -1,14 +1,10 @@
 const router=require('express').Router();
 const userRouter = require('./UserRouter')
-const postRouter = require('./PostRouter')
-const coffeeRouter = require('./CoffeeRouter')
 const partnerRouter= require('./PartnerRouter')
 const adminRouter = require('./AdminRouter')
 
 
 router.use('/user',userRouter);
-router.use('/post',postRouter);
-router.use('/coffee', coffeeRouter);
 router.use('/partner', partnerRouter);
 router.use('/admin', adminRouter);
 
