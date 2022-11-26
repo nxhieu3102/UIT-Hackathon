@@ -41,7 +41,6 @@ const user = new Schema(
             default: UserRoleEnum.contributor 
         },
 
-
         date: { type: Date, default: Date.now }
     }
 );

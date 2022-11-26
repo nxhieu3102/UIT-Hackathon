@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const {BillStatusEnum, CategoriesRubbish, PointOfRubbish } = require('../constants/Enum')
+const { BillStatusEnum, CategoriesRubbish } = require('../constants/Enum')
 
 const billSchema = mongoose.Schema({
     userId: {
@@ -12,23 +12,22 @@ const billSchema = mongoose.Schema({
         ref: "Campaign"
     },
 
-    rubbish: {
-        categories: {
-            type: [{
-                type: Number,
-                enum: Object.values(CategoriesRubbish),
-            }], 
-            default: []
+    rubbish: [{
+        category: {
+            type: String,
+            enum: Object.keys(CategoriesRubbish)
         },
-        quantities: [Number]
-    },
+        weight: {
+            type: Number
+        },
+    }],
 
     status: {
         type: Number,
         enum: Object.values(BillStatusEnum),
-        default: BillStatusEnum.pending 
+        default: BillStatusEnum.pending
     },
-    
+
 });
 
 module.exports = mongoose.model("Bill", billSchema);
