@@ -8,25 +8,38 @@ const user = new Schema(
             unique: true,
             required: true
         },
+        
         password: {
             type: String,
             required: true
         },
-        avatar: {
+
+        name: {
             type: String,
-            require: true
-        },
-        address: {
-            type: String,
-            require: true
+            required: true
         },
 
-        // posts: [
-        //     {
-        //         type: mongoose.Schema.Types.ObjectId,
-        //         ref: "Post"
-        //     }
-        // ],
+        address: {
+            type: String,
+            required: true
+        },
+
+        address2: {
+            type: String,
+            required: true
+        },
+
+        phone: {
+            type: String,
+            required: true
+        },
+
+        role: {
+            type: mongoose.Schema.Types.Integer,
+            enum: ['contributor', 'partner', 'admin'],
+            default: 'contributor' //contributor = 0, partner = 1, admin = 2
+        },
+
 
         date: { type: Date, default: Date.now }
     }
