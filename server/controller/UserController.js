@@ -58,7 +58,8 @@ class UserController {
         } catch (err) {
             next({
                 success: false,
-                message: "error",
+                isDuplicated:true,
+                message: "Email has existed",
                 error: err,
             });
             return;
