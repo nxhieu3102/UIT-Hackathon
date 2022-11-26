@@ -8,7 +8,7 @@ import { faCircleXmark } from '@fortawesome/free-solid-svg-icons';
 import google_logo from '~/assets/images/google.png'
 import facebook_logo from '~/assets/images/facebook.png'
 import logo_black from '~/assets/images/logo_black.png'
-import { loginStateContext } from '~/provider/LoginProvide'
+import { loginStateContext } from '~/provider/LoginProvider'
 
 const LoginForm = () => {
     const { loginState, toggleLoginState } = useContext(loginStateContext);

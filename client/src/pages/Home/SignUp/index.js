@@ -6,7 +6,7 @@ import logo from '~/assets/images/logo_black.png'
 import { Fragment, useContext, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleXmark } from '@fortawesome/free-solid-svg-icons';
-import {loginStateContext} from '~/provider/LoginProvide'
+import {loginStateContext} from '~/provider/LoginProvider'
 
 const SignUp = ({ isSignUp, HandleSignUp}) => {
     const {loginState} = useContext(loginStateContext);
@@ -97,7 +97,8 @@ const SignUp = ({ isSignUp, HandleSignUp}) => {
                             <input value={passWord} placeholder="Mật khẩu" type="password" onChange={HandleChangePassWord} name='password' />
                             <input value={confirmPassWord} placeholder="Xác nhận mật khẩu" type="password" onChange={HandleChangePassConfirmWord} name='confirmPassword' />
                         </div>
-                        <input disabled={!(confirmPassWord === passWord)} type='submit' className={clsx(styles['signup-btn'])} />
+                        <label htmlFor="submit">Đăng kí</label>
+                        <input disabled={!(confirmPassWord === passWord)} type='submit' className={clsx(styles['signup-btn'])} name='submit'/>
                         {message !== "temp" && <p> {message} </p>}
                     </form>
                 </div>
