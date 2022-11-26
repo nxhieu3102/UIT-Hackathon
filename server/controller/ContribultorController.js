@@ -27,7 +27,9 @@ const ContributorController = {
         try {
             const bill = Bill(req.body);
             const saveBill = await bill.save();
-            const currentCampaign = Campaign
+            const currentCampaign = Campaign.findById(req.body.campaignId);
+            
+
             
         } catch (error) {
             res.status(500).json({

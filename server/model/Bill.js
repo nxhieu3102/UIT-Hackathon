@@ -16,8 +16,9 @@ const billSchema = mongoose.Schema({
         quantity: {type: [Number], default: []}
     },
 
-    status: {
-        type: Boolean
+    collected_status: {
+        type: Boolean,
+        default: false
     },
     
 });
