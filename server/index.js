@@ -7,7 +7,7 @@ const router = require('./router')
 const app = express();
 require("dotenv").config();
 require('./controller/DatabaseController').connect(process.env.MONGODB_URI)
-
+app.use(express.static(path.resolve(__dirname, '../client/build')));
 app.use(bodyParser.urlencoded({ extended: true }));
 // app.use(express.json());
 // cookieParser middleware
@@ -19,6 +19,11 @@ app.use(bodyParser.json({limit:"50mb"}));
 app.use(morgan('combined'));
 app.use(cors());  //avoid "cors" error
 app.use("/api",router);
+
+
+app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, '../client/build', 'index.html'));
+});
 
 app.listen(PORT, () => {
     console.log(`Server listening on ${PORT}`);

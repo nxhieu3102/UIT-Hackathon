@@ -2,7 +2,6 @@ const mongoose = require('mongoose')
 const User = require('../model/User.js');
 const PartnerQueue = require('../model/PartnerQueue');
 const { PartnerQueueStatusEnum, UserRoleEnum } = require('../constants/Enum');
-const { ObjectID } = require('bson');
 class AdminController {
 
     async addNewPartner(req, res, next) {
@@ -47,15 +46,14 @@ class AdminController {
             });
             return;
         }
-        console.log(req.body.userId)
         // udpate role in user table
         try {
             await User.findOneAndUpdate(
                 {
                     _id:  mongoose.Types.ObjectId(req.body.userId),
-                    role: '1'
+                    role: UserRoleEnum.partner
                 },
-                { role: '2' }
+                { role: UserRoleEnum.contributor }
             ).exec();
         } catch (err) {
             console.log(err)

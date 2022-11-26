@@ -15,7 +15,7 @@ const billSchema = mongoose.Schema({
     rubbish: {
         categories: {
             type: [{
-                type: String,
+                type: Number,
                 enum: Object.values(CategoriesRubbish),
             }], 
             default: []
