@@ -14,14 +14,12 @@ const PartnerController = {
         // const status = req.body.status;
         // const bill_limit = req.body.bill_limit;
         try {
-            console.log("test")
-            const newCampaign = Campaign(req.body);
-            newCampaign = {...newCampaign, userId: req.user.userId};
-            console.log(newCampaign);
+            let newCampaign = Campaign({...req.body, userId: req.user.userId});
+            console.log(newCampaign)
             const saveCampaign = await newCampaign.save();
-            res.json(200).json({
+            res.status(200).json({
                 success: true,
-                    campaign: saveCampaign
+                campaign: saveCampaign
                 })
         } catch (error) {
             res.status(500).json({
