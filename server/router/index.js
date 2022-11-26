@@ -3,12 +3,14 @@ const userRouter = require('./UserRouter')
 const postRouter = require('./PostRouter')
 const coffeeRouter = require('./CoffeeRouter')
 const campaignRouter = require('./CampaignRouter')
+const adminRouter = require('./AdminRouter')
 
 
 router.use('/user',userRouter);
 router.use('/post',postRouter);
 router.use('/coffee', coffeeRouter);
 router.use('/campaign', campaignRouter);
+router.use('/admin', adminRouter);
 
 
 

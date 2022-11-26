@@ -1,7 +1,7 @@
 const tokenHelper = require('../helper/Token')
 const { UserRoleEnum } = require('../constants/Enum')
 var AuthMiddleware = {
-    authorizeUser: (req, res, next, role) => {
+    authorizeUser: function(req, res, next, role) {
         data = tokenHelper.getDataFromToken(req.cookies.token)
         if (data === 0 || !data.user || data.user.role!=role)
             res.status(403).send({
@@ -14,13 +14,13 @@ var AuthMiddleware = {
         }
     },
     isContributor: (req, res, next) => {
-        this.authorizeUser(req,res,next,UserRoleEnum.contributor)
+        AuthMiddleware.authorizeUser(req,res,next,UserRoleEnum.contributor)
     },
     isPartner: (req, res, next) => {
-        this.authorizeUser(req,res,next,UserRoleEnum.partner)
+        AuthMiddleware.authorizeUser(req,res,next,UserRoleEnum.partner)
     },
     isAdmin: (req, res, next) => {
-        this.authorizeUser(req,res,next,UserRoleEnum.admin)
+        AuthMiddleware.authorizeUser(req,res,next,UserRoleEnum.admin)
     }
 }
 

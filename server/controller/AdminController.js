@@ -4,8 +4,9 @@ const PartnerQueue = require('../model/PartnerQueue');
 
 class AdminController {
 
-    async creatNewPartner(req, res, next) {
+    async addNewPartner(req, res, next) {
         // Check cheater
+        console.log(req.user)
         const userId = req.user.id;
         const newPartner = PartnerQueue.findOne({ user: mongoose.Types.ObjectId(userId) })
         if (!newPartner || newPartner.status == 1) {
@@ -52,4 +53,4 @@ class AdminController {
     }
 
 }
-module.exports = new UserController;
+module.exports = new AdminController;

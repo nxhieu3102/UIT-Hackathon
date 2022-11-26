@@ -1,5 +1,5 @@
 const router=require('express').Router();
-const UserController = require('../controller/UserController')
+const adminController = require('../controller/AdminController')
 const authMiddleware = require('../middleware/AuthMiddleware')
 
 
@@ -8,8 +8,7 @@ const authMiddleware = require('../middleware/AuthMiddleware')
 router.use(authMiddleware.isAdmin)
 
 
-router.post('/signup',UserController.creatNewAccount);
-router.post('/login',UserController.verifyAccount);
+router.post('/add-partner',adminController.addNewPartner);
 // router.post('/auth/google',AuthController.verifyGoogleLogin);
 
 module.exports = router
