@@ -58,7 +58,9 @@ const PartnerController = {
             const bill = await Bill.findOneAndUpdate(
                 {_id: billId},
                 {status: BillStatusEnum.success})
-            
+                res.status(200).json({
+                    success: true,
+                })
         } catch (error) {
             res.status(500).json({
                 success: false,
@@ -74,7 +76,25 @@ const PartnerController = {
             const bill = await Bill.findOneAndUpdate(
                 {_id: billId},
                 {status: BillStatusEnum.fail})
+                res.status(200).json({
+                    success: true,
+                })
             
+        } catch (error) {
+            res.status(500).json({
+                success: false,
+                error: error
+            })
+        }
+    },
+
+    viewMyCampaign: async (req, res) => {
+        try {
+            const campaigns = await Campaign.find({userId: req.user.userId});
+            res.status(200).json({
+                success: true,
+                campaigns: campaigns
+            })
         } catch (error) {
             res.status(500).json({
                 success: false,

@@ -9,9 +9,10 @@ router.use(authMiddleware.isPartner)
 
 //create
 router.post("/", partnerController.createCampaign);
-router.put('/view-campaign-bills', partnerController.viewwCampaignBills);
-router.put('accept-bill', partnerController.acceptBill);
-router.put('deny-bill', partnerController.dennyBill);
+router.get('/view-campaign-bills', partnerController.viewwCampaignBills);
+router.put('/accept-bill', partnerController.acceptBill);
+router.put('/deny-bill', partnerController.dennyBill);
+router.get('/view-my-campaigns', partnerController.viewMyCampaign);
 
 
 // //get all coffee
