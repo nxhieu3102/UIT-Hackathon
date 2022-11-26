@@ -97,7 +97,8 @@ const SignUp = ({ isSignUp, HandleSignUp}) => {
                             <input value={passWord} placeholder="Mật khẩu" type="password" onChange={HandleChangePassWord} name='password' />
                             <input value={confirmPassWord} placeholder="Xác nhận mật khẩu" type="password" onChange={HandleChangePassConfirmWord} name='confirmPassword' />
                         </div>
-                        <input disabled={!(confirmPassWord === passWord)} type='submit' className={clsx(styles['signup-btn'])} />
+                        <label htmlFor="submit">Đăng kí</label>
+                        <input disabled={!(confirmPassWord === passWord)} type='submit' className={clsx(styles['signup-btn'])} name='submit'/>
                         {message !== "temp" && <p> {message} </p>}
                     </form>
                 </div>
