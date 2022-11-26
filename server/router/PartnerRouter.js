@@ -8,7 +8,7 @@ const authMiddleware = require('../middleware/AuthMiddleware')
 router.use(authMiddleware.isPartner)
 
 //create
-router.post("/", partnerController.createCampaign);
+router.post("/create-campaign", partnerController.createCampaign);
 router.get('/view-campaign-bills', partnerController.viewwCampaignBills);
 router.put('/accept-bill', partnerController.acceptBill);
 router.put('/deny-bill', partnerController.dennyBill);

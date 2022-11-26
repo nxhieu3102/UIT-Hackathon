@@ -22,9 +22,4 @@ const CategoriesRubbish = {
 }
 
 
-const PointOfRubbish = {
-    plastic: 1,
-    paper: 0.7,
-    cloth: 0.5
-}
-module.exports = { UserRoleEnum, PartnerQueueStatusEnum, BillStatusEnum, CategoriesRubbish, PointOfRubbish }
+module.exports = { UserRoleEnum, PartnerQueueStatusEnum, BillStatusEnum, CategoriesRubbish }

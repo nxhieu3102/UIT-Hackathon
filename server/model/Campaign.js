@@ -4,18 +4,24 @@ const mongoose = require('mongoose')
 const campaignSchema = mongoose.Schema({
     title: {
         type: String,
-        require: true
+        required: true
     },
 
-    desc: {
+    description: {
         type: String
     },
     
     begin: {
         type: Date,
+        validate: {
+            validator: function(input) {
+              return (new Date(input) >= new Date());
+            },
+            message: props => `${props.value} is not a valid Date!`
+          },
         default: Date.now()
     },
-
+   
     end: {
         type: Date,
         default: Date.now()
@@ -34,11 +40,12 @@ const campaignSchema = mongoose.Schema({
 
     userId: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "User"
+        ref: "User",
+        required:true
     },
 
 
-    bill_limit:{
+    weight_limit:{
         type: Number,
         required: true
     },
@@ -48,12 +55,7 @@ const campaignSchema = mongoose.Schema({
         default: true
     },
 
-    bills_access_number: {
-        type: Number,
-        default: 0
-    },
-
-    bills_collected_number: {
+    collected_weight: {
         type: Number,
         default: 0
     }

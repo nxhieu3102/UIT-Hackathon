@@ -4,7 +4,6 @@ require("dotenv").config();
 const path = require("path");
 const cors = require('cors'); //avoid cors error
 
-
 const cookieParser = require('cookie-parser')
 
 const router = require('./router')
@@ -19,7 +18,6 @@ app.use(cookieParser())
 require('./controller/DatabaseController').connect(process.env.MONGODB_URI)
 
 const PORT = process.env.PORT || 6000;
-
 app.use(morgan('combined'));
 
 app.use("/api", router);
