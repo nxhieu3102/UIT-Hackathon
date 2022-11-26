@@ -3,6 +3,7 @@ import styles from './index.module.css'
 import clsx from 'clsx'
 import search from '~/assets/images/Dashboard/search.png'
 import plastic from '~/assets/images/Dashboard/Plastic.png'
+import close from '~/assets/images/Dashboard/close.png'
 const DashboardUser = () => {
     const API = 'https://6381f08c53081dd5498bea48.mockapi.io/api/v1/campaign'
     const [inforCampain, setInforCampain] = useState([])
@@ -15,6 +16,12 @@ const DashboardUser = () => {
             console.log(inforCampain[campainId]);
             setChooseCampain(inforCampain[campainId])
         }
+        const element = document.getElementById('campaign-list')
+        element.style.display = 'none'
+    }
+
+    const handleRemoveCampain = async (ev) => {
+        setChooseCampain(null)
         const element = document.getElementById('campaign-list')
         element.style.display = 'none'
     }
@@ -89,23 +96,36 @@ const DashboardUser = () => {
                                     </li>;
                                 })}
                             </ul>
+                            {chooseCampain != null &&
+                                <div className={clsx(styles["campaign-item--selected-wrap"])}>
 
-                            {chooseCampain != null && <div ref={ref} onClick={handleSelectCampain} className={clsx(styles["campaign-item"])}>
-                                <div className={clsx(styles["campaign-item__location"])}>
-                                    <img src={plastic} className={clsx(styles["campaign-item__icon"])} alt='' />
-                                    <div className={clsx(styles["campaign-item__text"])}>
-                                        <p className={clsx(styles["campaign-item__title"])}>{chooseCampain.title} </p>
-                                        <p className={clsx(styles["campaign-item__title"])}>{chooseCampain.location} </p>
+                                    <div ref={ref} onClick={handleSelectCampain} className={clsx(styles["campaign-item"], styles["campaign-item--selected"])}>
+                                        <div className={clsx(styles["campaign-item__location"])}>
+                                            <img src={plastic} className={clsx(styles["campaign-item__icon"])} alt='' />
+                                            <div className={clsx(styles["campaign-item__text"])}>
+                                                <p className={clsx(styles["campaign-item__title"])}>{chooseCampain.title} </p>
+                                                <p className={clsx(styles["campaign-item__title"])}>{chooseCampain.location} </p>
+                                            </div>
+                                        </div>
+                                        <div className={clsx(styles["campaign-item__date"])}>
+                                            <p className={clsx(styles["campaign-item__date-start"])}>{chooseCampain["Date start"]}</p>
+                                            <p className={clsx(styles["campaign-item__date-end"])}>{chooseCampain["Date end"]}</p>
+                                        </div>
+                                    </div>
+                                    <div onClick={handleRemoveCampain} className={clsx(styles["wrap-img"])}>
+                                        <img src={close} alt='' />
                                     </div>
                                 </div>
-                                <div className={clsx(styles["campaign-item__date"])}>
-                                    <p className={clsx(styles["campaign-item__date-start"])}>{chooseCampain["Date start"]}</p>
-                                    <p className={clsx(styles["campaign-item__date-end"])}>{chooseCampain["Date end"]}</p>
+                            }
+                            <div className={clsx(styles["trash-type"])}>
+                                <img src={plastic} alt=''/>
+                                <p>Rác thải nhựa</p>
+                                <input placeholder="Số lượng" type='number'></input>
+                                <div onClick={handleRemoveCampain} className={clsx(styles["wrap-img"])}>
+                                    <img src={close} alt='' />
                                 </div>
-                            </div>}
-
+                            </div>
                         </div>
-                        <div className={clsx(styles[""])}></div>
                     </div>
                 </div>
             </div>
