@@ -1,7 +1,8 @@
 const { json } = require("body-parser");
 const Bill = require("../model/Bill")
 const Campaign = require("../model/Campaign");
-
+const PartnerQueue = require('../model/PartnerQueue');
+const { UserRoleEnum } = require('../constants/Enum')
 const ContributorController = {
 
     //viewALLCampaign
@@ -28,7 +29,7 @@ const ContributorController = {
             const bill = Bill(req.body);
             const saveBill = await bill.save();
             const currentCampaign = Campaign
-            
+
         } catch (error) {
             res.status(500).json({
                 success: false,
@@ -36,11 +37,17 @@ const ContributorController = {
             })
         }
 
+    },
+    requestPartnerRole: async (req, res, next) => {
+        if (req.user.role == UserRoleEnum.contributor) {
+            const newPartnerQueue = new PartnerQueue({
+                user: new mongoose.Types.ObjectId(req.user.id)
+            })
+            newPartnerQueue.save();
+        }
     }
 
-
     //viewMyBill
-
 }
 
 module.exports = ContributorController;
