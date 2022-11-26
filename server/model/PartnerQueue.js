@@ -11,7 +11,7 @@ const partner_queue = new Schema(
         status: {
             type:String,
             enum: ['approved', 'pending', 'disapproved'],
-            default: 'pending' //contributor = 0, partner = 1, admin = 2
+            default: 'pending' //approved = 1, pending = 0, disapproved = -1
         },
     },{timestamps: true}
 );

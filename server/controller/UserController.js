@@ -7,7 +7,8 @@ class UserController {
 
     async creatNewAccount(req, res, next) {
         // Check cheater
-        if (!req.body.email || !req.body.password || !req.body.address || !req.body.phone || !req.body.address2) {
+        if (!req.body.email || !req.body.password || !req.body.address || !req.body.phone || !req.body.address2 || !req.body.name) {
+            console.log(req.body)
             next({
                 invalidFields: true,
                 message: "Invalid fields"
@@ -30,7 +31,6 @@ class UserController {
             address2: req.body.address2,
             address: req.body.address,
             phone: req.body.phone,
-            role: req.body.role,
         })
 
         console.log(newUser);

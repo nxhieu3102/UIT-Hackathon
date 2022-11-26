@@ -1,8 +1,6 @@
 const mongoose = require('mongoose')
 const User = require('../model/User.js');
 const PartnerQueue = require('../model/PartnerQueue');
-const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken')
 
 class AdminController {
 
@@ -30,27 +28,27 @@ class AdminController {
         // udpate role in user table
         try {
             await User.findOneAndUpdate(
-               { _id: mongoose.Types.ObjectId(userId) },
-               { $set: { "role": 1} }
-           ).exec();
-       } catch (err) {
-           console.log(err)
-           res.status(400).json(err)
-       }
+                { _id: mongoose.Types.ObjectId(userId) },
+                { $set: { "role": 'partner' } }
+            ).exec();
+        } catch (err) {
+            console.log(err)
+            res.status(400).json(err)
+        }
 
     }
     async deletePartner(req, res, next) {
-       // udpate role in user table
-       try {
-        await User.findOneAndUpdate(
-           { _id: mongoose.Types.ObjectId(req.user.id) },
-           { $set: { "role": 0} }
-       ).exec();
-   } catch (err) {
-       console.log(err)
-       res.status(400).json(err)
-       return;
-   }
+        // udpate role in user table
+        try {
+            await User.findOneAndUpdate(
+                { _id: mongoose.Types.ObjectId(req.user.id) },
+                { $set: { "role": 'contributor' } }
+            ).exec();
+        } catch (err) {
+            console.log(err)
+            res.status(400).json(err)
+            return;
+        }
     }
 
 }
