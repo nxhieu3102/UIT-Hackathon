@@ -6,6 +6,7 @@ const UserController = require('../controller/UserController')
 router.post('/signup',UserController.creatNewAccount);
 router.post('/login',UserController.verifyAccount);
 router.get('/all-campaigns', UserController.viewAllCampaign );
-// router.post('/auth/google',AuthController.verifyGoogleLogin);
+router.get('/top-point', UserController.getTop8Point );
+//router.post('/auth/google',AuthController.verifyGoogleLogin);
 
 module.exports = router

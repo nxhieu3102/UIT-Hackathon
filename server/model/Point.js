@@ -8,6 +8,15 @@ const PointsChema = mongoose.Schema({
     },
     value: {
         type: Number
+    },
+    plastic:{
+        type:Number
+    },
+    paper:{
+        type:Number
+    },
+    cloth:{
+        type:Number
     }
 
 

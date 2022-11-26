@@ -120,10 +120,10 @@ const PartnerController = {
                 PointController.updateUserPoint(bill.userId)
                 return;
             }
-            res.status(400).json({
-                success: false,
-                mess: 'dont do that'
-            })
+            // res.status(400).json({
+            //     success: false,
+            //     mess: 'dont do that'
+            // })
 
         } catch (error) {
             res.status(500).json({
