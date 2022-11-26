@@ -1,4 +1,4 @@
-const CampaignController = require("../controller/PartnerController");
+const partnerController = require("../controller/PartnerController");
 const router = require("express").Router();
 const authMiddleware = require('../middleware/AuthMiddleware')
 
@@ -8,7 +8,7 @@ const authMiddleware = require('../middleware/AuthMiddleware')
 router.use(authMiddleware.isPartner)
 
 //create
-router.post("/", CampaignController.createCampaign);
+router.post("/", partnerController.createCampaign);
 
 // //get all coffee
 // router.get("/", coffeeController.getAllCoffee);

@@ -1,6 +1,6 @@
 const Campaign = require("../model/Campaign")
 
-const CampaignController = {
+const PartnerController = {
 
     //create campaign
     createCampaign: async(req, res) => {
@@ -35,4 +35,4 @@ const CampaignController = {
 
 }
 
-module.exports = CampaignController;
+module.exports = PartnerController;

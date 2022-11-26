@@ -48,6 +48,16 @@ const campaignSchema = mongoose.Schema({
         default: true
     },
 
+    bills_access_number: {
+        type: Number,
+        default: 0
+    },
+
+    bills_collected_number: {
+        type: Number,
+        default: 0
+    }
+
     
 }, {timestamps: true});
 

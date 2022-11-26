@@ -31,7 +31,7 @@ class UserController {
             address2: req.body.address2,
             address: req.body.address,
             phone: req.body.phone,
-            role: req.body.role,
+            // role: req.body.role,
         })
 
         console.log(newUser);
@@ -110,8 +110,11 @@ class UserController {
         }
     }
 
+
+
     async requestPartnerRole(req,res,next){
     }
+
 
 
 }
