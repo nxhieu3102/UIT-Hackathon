@@ -9,6 +9,7 @@ body {
 	display: block;
 	background: radial-gradient(50% 20.22% at 50% 0%, #afffdd 0%, #ffffff 100%);
 }
+
 .navbar {
 	height: 100px;
 	left: 0;
@@ -298,7 +299,7 @@ input {
 
 .overlay {
 	background: linear-gradient(90deg, #3763ff 0%, #22cd52 100%);
-	background-repeat: no-repeat;
+	/*background-repeat: no-repeat;*/
 	background-size: cover;
 	background-position: 0 0;
 	color: #ffffff;
