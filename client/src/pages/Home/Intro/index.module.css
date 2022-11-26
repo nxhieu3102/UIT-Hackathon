@@ -1,3 +1,8 @@
+body {
+    background: radial-gradient(50% 20.22% at 50% 0%, #AFFFDD 0%, #FFFFFF 100%);
+    font-family : 'Roboto', sans-serif;
+}
+
 .navbar {
     width: 1440px;
     height: 100px;
