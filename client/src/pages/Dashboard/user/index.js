@@ -4,6 +4,14 @@ import clsx from 'clsx'
 import search from '~/assets/images/Dashboard/search.png'
 import plastic from '~/assets/images/Dashboard/Plastic.png'
 const DashboardUser = () => {
+    const display = ()=>{
+        const element = document.getElementById('campaign-list')
+        element.style.display = 'block'
+    }
+    const ndisplay = ()=>{
+        const element = document.getElementById('campaign-list')
+        element.style.display = 'none'
+    }
     return (
         <Fragment>
             <div className={clsx(styles["dashboard"])}>
@@ -26,9 +34,9 @@ const DashboardUser = () => {
                         <div className={clsx(styles["campaign-form"])}>
                             <div className={clsx(styles["form-search"])}>
                                 <img className={clsx(styles["form-search-icon"])} src={search} />
-                                <input onFocus={} className={clsx(styles["form-search-input"])} placeholder="Tìm kiếm chiến dịch" />
+                                <input onFocus={display} onBlur = {ndisplay}className={clsx(styles["form-search-input"])} placeholder="Tìm kiếm chiến dịch" />
                             </div>
-                            <ul className={clsx(styles["campaign-list"])}>
+                            <ul className={clsx(styles["campaign-list"])} id='campaign-list'>
                                 <li className={clsx(styles["campaign-item"])}>
                                     <div className={clsx(styles["campaign-item__location"])}>
                                         <img src={plastic} className={clsx(styles["campaign-item__icon"])} alt='' />
