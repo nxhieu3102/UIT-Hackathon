@@ -31,6 +31,7 @@ class UserController {
             address: req.body.address,
             phone: req.body.phone,
             role: req.body.role,
+            user_name: "abc"
         })
 
         console.log(newUser);
