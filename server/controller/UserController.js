@@ -2,12 +2,13 @@ const mongoose = require('mongoose')
 const User = require('../model/User.js');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken')
-
+const PartnerQueue = require('../model/PartnerQueue');
 class UserController {
 
     async creatNewAccount(req, res, next) {
         // Check cheater
-        if (!req.body.email || !req.body.password || !req.body.address || !req.body.phone || !req.body.address2) {
+        if (!req.body.email || !req.body.password || !req.body.address || !req.body.phone || !req.body.address2 || !req.body.name) {
+            console.log(req.body)
             next({
                 invalidFields: true,
                 message: "Invalid fields"
@@ -86,7 +87,8 @@ class UserController {
                     })
                     res.send({
                         success: true,
-                        message: "sucessfully"
+                        message: "sucessfully",
+                        user: user
                     })
                 }
                 else {
@@ -106,6 +108,9 @@ class UserController {
             res.send({ success: false, message: "Wrong information" });
             return;
         }
+    }
+
+    async requestPartnerRole(req,res,next){
     }
 
 

@@ -2,13 +2,13 @@ const router=require('express').Router();
 const userRouter = require('./UserRouter')
 const postRouter = require('./PostRouter')
 const coffeeRouter = require('./CoffeeRouter')
-const campaignRouter = require('./CampaignRouter')
+const partnerRouter = require('./PartnerRouter')
 
 
 router.use('/user',userRouter);
 router.use('/post',postRouter);
 router.use('/coffee', coffeeRouter);
-router.use('/campaign', campaignRouter);
+router.use('/partner', partnerRouter);
 
 
 
