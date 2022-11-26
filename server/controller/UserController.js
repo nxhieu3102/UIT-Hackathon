@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 const User = require('../model/User.js');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken')
-
+const PartnerQueue = require('../model/PartnerQueue');
 class UserController {
 
     async creatNewAccount(req, res, next) {
@@ -106,6 +106,9 @@ class UserController {
             res.send({ success: false, message: "Wrong information" });
             return;
         }
+    }
+
+    async requestPartnerRole(req,res,next){
     }
 
 
