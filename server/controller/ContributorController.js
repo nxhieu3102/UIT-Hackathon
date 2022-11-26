@@ -3,6 +3,7 @@ const Bill = require("../model/Bill")
 const Campaign = require("../model/Campaign");
 const PartnerQueue = require('../model/PartnerQueue');
 const { UserRoleEnum } = require('../constants/Enum')
+const mongoose = require('mongoose')
 const ContributorController = {
 
 
@@ -29,13 +30,36 @@ const ContributorController = {
         }
 
     },
+    
     requestPartnerRole: async (req, res, next) => {
         if (req.user.role == UserRoleEnum.contributor) {
             const newPartnerQueue = new PartnerQueue({
-                user: new mongoose.Types.ObjectId(req.user.id)
+                user: new mongoose.Types.ObjectId(req.user.userId)
             })
-            newPartnerQueue.save();
+            try {
+               await newPartnerQueue.save();
+            } catch (e) {
+                res.status(500).json({
+                    success: false,
+                    error: e
+                })
+                console.log(e);
+                return;
+
+            }
+           
+            res.status(200).json({
+                success: true,
+                message: 'Sucessfully'
+            })
+            return;
         }
+        
+        res.status(401).json({
+            success: false,
+            invalidUser: true,
+            message: 'Invalid user.'
+        })
     },
 
     //viewMyBill

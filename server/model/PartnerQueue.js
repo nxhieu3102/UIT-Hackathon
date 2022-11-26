@@ -3,14 +3,13 @@ const { PartnerQueueStatusEnum } = require('../constants/Enum')
 const Schema = mongoose.Schema;
 const partner_queue = new Schema(
     {
-        _id: mongoose.Types.ObjectId,
         user: {
             type: mongoose.Schema.Types.ObjectId,
             ref: "User",
             unique: true
         },
         status: {
-            type: String,
+            type: Number,
             enum: Object.values(PartnerQueueStatusEnum),
             default: PartnerQueueStatusEnum.pending //approved = 1, pending = 0, disapproved = -1
         },
