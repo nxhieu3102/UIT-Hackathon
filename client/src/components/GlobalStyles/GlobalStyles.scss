@@ -21,8 +21,8 @@ html {
 
 body {
     // background: url('/assets/images/background-overlay.png') no-repeat;
-    background-color: #ccc;
-    font-family: 'Roboto Slab', serif;
+    background: radial-gradient(50% 20.22% at 50% 0%, #AFFFDD 0%, #FFFFFF 100%);
+    font-family : 'Roboto', sans-serif;
     font-size: 1.6rem;
     line-height: 1.5;
     text-rendering: optimizeSpeed;
@@ -32,4 +32,8 @@ body {
 p{
     margin: 0;
     padding: 0;
+}
+
+::-webkit-scrollbar {
+    border-radius: 10px;
 }

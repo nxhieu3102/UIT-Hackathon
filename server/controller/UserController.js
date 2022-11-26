@@ -1,17 +1,37 @@
-const db = require('./DatabaseController.js');
-db.connect(process.env.MONGODB_URI)
-
 const mongoose = require('mongoose')
 const User = require('../model/User.js');
 const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken')
-
+const jwt = require('jsonwebtoken');
+const Campaign = require("../model/Campaign");
+const PointController = require('./PointController.js');
 class UserController {
+
+    //viewALLCampaign
+    async viewAllCampaign(req, res, next) {
+        try {
+            const campaigns = await Campaign.find();
+            res.status(200).json(
+                {
+                    success: true,
+                    campaigns: campaigns
+                }
+            )
+        } catch (error) {
+            res.status(500).json({
+                success: false,
+                error: error
+            })
+        }
+    }
 
     async creatNewAccount(req, res, next) {
         // Check cheater
-        if (!req.body.username || !req.body.password || !req.body.address || !req.body.avatar) {
-            next({ message: "Invalid fields" })
+        if (!req.body.email || !req.body.password || !req.body.address || !req.body.phone || !req.body.address2 || !req.body.name) {
+            console.log(req.body)
+            next({
+                invalidFields: true,
+                message: "Invalid fields"
+            })
             return;
         }
         let hashedPassword
@@ -24,33 +44,44 @@ class UserController {
         }
         const newUser = new User({
             _id: new mongoose.Types.ObjectId(),
-            user_name: req.body.username,
+            email: req.body.email,
+            name: req.body.name,
             password: hashedPassword,
-            avatar: req.body.avatar,
+            address2: req.body.address2,
             address: req.body.address,
+            phone: req.body.phone,
+            // role: req.body.role,
         })
+
+        console.log(newUser);
         try {
             await newUser.save();
         } catch (err) {
-            next({ 
+            next({
                 success: false,
-                message: "existed" });
+                isDuplicated: true,
+                message: "Email has existed",
+                error: err,
+            });
             return;
         }
-        res.send({ 
+        res.send({
             success: true,
             message: "sucessfully",
-            user: newUser 
+            user: newUser
         });
     }
 
     async verifyAccount(req, res, next) {
-
-        if (!req.body.username || !req.body.password) {
-            next({ mess: "Invalid account" })
+        if (!req.body.email || !req.body.password) {
+            next({
+                success: false,
+                message: "Invalid fields",
+                invalidFields: true
+            })
             return;
         }
-        const user = await User.findOne({ user_name: req.body.username })
+        const user = await User.findOne({ email: req.body.email })
 
         console.log(user);
         if (user) {
@@ -58,11 +89,12 @@ class UserController {
                 let check = await bcrypt.compare(req.body.password, user.password)
                 if (check) {
                     const token = jwt.sign({
-                        user:{
-                            username: user.user_name,
+                        user: {
+                            email: user.email,
                             userId: user._id,
-                            avatar: user.avatar,
-                            address: user.address
+                            address2: user.address2,
+                            address: user.address,
+                            role: user.role
                         },
                     },
                         process.env.SECRET_KEY_TOKEN,
@@ -73,10 +105,18 @@ class UserController {
                     res.cookie('token', token, {
                         expires: new Date(Date.now() + 80 * 3600)
                     })
-                    res.send({ message: "Sucessfully" })
+                    res.send({
+                        success: true,
+                        message: "sucessfully",
+                        user: user
+                    })
                 }
                 else {
-                    res.send({ message: "Wrong information" });
+                    res.send({
+                        success: false,
+                        message: "wrong information",
+                        wrongInformation: true,
+                    });
                     return;
                 }
             } catch (err) {
@@ -85,13 +125,25 @@ class UserController {
             }
         }
         else {
-            res.send({ message: "Wrong information" });
+            res.send({ success: false, message: "Wrong information" });
             return;
         }
-
-       
     }
-    
+    async getTop8Point(req, res, next) {
+        try {
+            const data = await PointController.getTop8HiestPoint();
+            res.status(200).json({
+                success: true,
+                data: data
+            })
+        }catch(e){
+            res.status(400).json({
+                success: false,
+                err: e
+            })
+        }
+    }
+
 
 }
 module.exports = new UserController;

@@ -1,9 +1,10 @@
 const mongoose = require('mongoose');
+const { UserRoleEnum } = require('../constants/Enum')
 const Schema = mongoose.Schema;
 const user = new Schema(
     {
         _id: mongoose.Types.ObjectId,
-        user_name: {
+        email: {
             type: String,
             unique: true,
             required: true
@@ -35,11 +36,10 @@ const user = new Schema(
         },
 
         role: {
-            type: mongoose.Schema.Types.Integer,
-            enum: ['contributor', 'partner', 'admin'],
-            default: 'contributor' //contributor = 0, partner = 1, admin = 2
+            type: Number,
+            enum: Object.values(UserRoleEnum),
+            default: UserRoleEnum.contributor 
         },
-
 
         date: { type: Date, default: Date.now }
     }
