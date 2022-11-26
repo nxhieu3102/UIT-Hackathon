@@ -35,7 +35,7 @@ const user = new Schema(
         },
 
         role: {
-            type: mongoose.Schema.Types.Integer,
+            type: String,
             enum: ['contributor', 'partner', 'admin'],
             default: 'contributor' //contributor = 0, partner = 1, admin = 2
         },

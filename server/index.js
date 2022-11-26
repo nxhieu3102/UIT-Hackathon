@@ -6,7 +6,7 @@ const cookieParser = require('cookie-parser')
 const router = require('./router')
 const app = express();
 require("dotenv").config();
-require('./DatabaseController.js').connect(process.env.MONGODB_URI)
+require('./controller/DatabaseController').connect(process.env.MONGODB_URI)
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
