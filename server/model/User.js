@@ -8,25 +8,36 @@ const user = new Schema(
             unique: true,
             required: true
         },
+        
         password: {
             type: String,
             required: true
         },
-        avatar: {
+
+        name: {
             type: String,
             require: true
         },
+
         address: {
             type: String,
             require: true
         },
 
-        // posts: [
-        //     {
-        //         type: mongoose.Schema.Types.ObjectId,
-        //         ref: "Post"
-        //     }
-        // ],
+        address2: {
+            type: String,
+            require: true
+        },
+
+        phone: {
+            type: String,
+            require: true
+        },
+
+        rolle: {
+            type: mongoose.Schema.Types.Integer,
+        },
+
 
         date: { type: Date, default: Date.now }
     }
