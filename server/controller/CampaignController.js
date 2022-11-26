@@ -5,7 +5,8 @@ const CampaignController = {
 
     //create campaign
     createCampaign: async(req, res) => {
-        const userRole = res.user.role;
+        console.log(req.user);
+        const userRole = req.user.role;
         if(userRole === "partner")
         {
             // const currentUserId = req.user.userId;
