@@ -4,10 +4,9 @@ const UserRoleEnum={
     admin:2
 }
 
-const PartnerQueueStatusEnum={
+ const PartnerQueueStatusEnum={
     approved:1,
     pending:0,
     disapproved:-1
 }
-
-module.exports = {UserRoleEnum, PartnerQueueStatusEnum}
+module.exports={UserRoleEnum,PartnerQueueStatusEnum}
