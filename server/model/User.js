@@ -16,26 +16,27 @@ const user = new Schema(
 
         name: {
             type: String,
-            require: true
+            required: true
         },
 
         address: {
             type: String,
-            require: true
+            required: true
         },
 
         address2: {
             type: String,
-            require: true
+            required: true
         },
 
         phone: {
             type: String,
-            require: true
+            required: true
         },
 
-        rolle: {
+        role: {
             type: mongoose.Schema.Types.Integer,
+            default: 0 //contributor = 0, partner = 1, admin = 2
         },
 
 
