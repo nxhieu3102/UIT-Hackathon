@@ -1,57 +1,41 @@
 import { Fragment, useState, useContext } from "react"
 import styles from './index.module.css'
 import clsx from 'clsx';
-import { Link, redirect, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { loginStateContext } from '~/provider/LoginProvider'
+import axios from 'axios';
+
+const API = 'http://localhost:3001/api/user/login'
 
 const Login = () => {
+    const navigate = useNavigate()
     const { loginState, toggleLoginState } = useContext(loginStateContext);
     const [message, setMessage] = useState('temp')
-    const API = 'http://localhost:3001/api/user/login'
+
     const [userInfor, setUserInfor] = useState({
         userName: '',
         passWord: '',
     })
 
-    const navigate = useNavigate()
-
-  
     const { userName, passWord } = userInfor;
-
 
     const HandleSubmitLoginForm = async (event) => {
         event.preventDefault();
-        const user = {
-            email: userInfor.userName,
-            password: userInfor.passWord
-        }
-        console.log(user);
-        const response = await fetch(API, {
-            method: 'POST',
-            mode: 'cors',
-            cache: 'no-cache',
-            credentials: 'same-origin',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            redirect: 'follow',
-            referrerPolicy: 'no-referrer',
-            body: JSON.stringify(user)
-        });
-
-        response.json().then((result) => {
-            console.log(result);
-            toggleLoginState(result.user.role)
-
-            if (result.success === true) {
-                console.log("sucessfully");
-                toggleLoginState(result.user.role)
-                navigate('/')
-            } else {
-                setMessage("Dang nhap that bai")
-            }
-        })
-        toggleUserInfor('', '')
+        axios.post(API, { userName, passWord })
+            .then(response => {
+                toggleLoginState(response.user.role)
+                if (response.success === true) {
+                    console.log("sucessfully");
+                    toggleLoginState(response.user.role)
+                    navigate('/')
+                } else {
+                    setMessage("Dang nhap that bai")
+                }
+            })
+            .catch(error => {
+                console.log(error);
+            });
+        toggleUserInfor(',')
     }
 
     const toggleUserInfor = (userName, passWord) => {
@@ -78,6 +62,7 @@ const Login = () => {
                         <input value={userName} spellCheck='false' placeholder="Email" type="Email" onChange={HandleChangeName} name='username' required />
                         <input value={passWord} placeholder="Mật khẩu" type="password" onChange={HandleChangePassWord} name='password' required />
                         <Link to='/'>Quên mật khẩu</Link>
+                        {message === 'temp' ? ' ' : <p>message</p>}
                         <button type="submit">Đăng nhập</button>
                     </form>
                 </div>
