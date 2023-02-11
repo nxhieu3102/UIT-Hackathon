@@ -21,7 +21,6 @@ const App = () => {
                 </Layout>
               </LoginProvide>
             } />
-
             <Route path="/dashboard" element={
               <LoginProvide>
                 <Dashboard>
@@ -29,7 +28,6 @@ const App = () => {
                 </Dashboard>
               </LoginProvide>
             } />
-
             <Route path="/LogIn" element={
               <LoginProvide>
                 <Layout>
@@ -40,7 +38,7 @@ const App = () => {
             <Route path="/Contributors" element={
               <LoginProvide>
                 <Layout>
-                  <Contributor/>
+                  <Contributor />
                 </Layout>
               </LoginProvide>
             } />

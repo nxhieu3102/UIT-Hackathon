@@ -27,12 +27,12 @@ function Home() {
     //         }
     return (
         <Fragment>
-            
             <Intro/>
             <Target/>
             <Event/>
             <Experience/>
             <Donors/>
+            <Footer/>
         </Fragment>
     );
 }
