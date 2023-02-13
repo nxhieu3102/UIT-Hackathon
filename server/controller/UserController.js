@@ -26,17 +26,19 @@ class UserController {
 
     async creatNewAccount(req, res, next) {
         // Check cheater
-        if (!req.body.email || !req.body.password || !req.body.address || !req.body.phone || !req.body.address2 || !req.body.name) {
-            console.log(req.body)
+        // || !req.body.address || !req.body.phone || !req.body.address2 || !req.body.name
+        if (!req.body.email || !req.body.password) {
+            console.log(req.body.email)
+            console.log(req.body.password)
             next({
                 invalidFields: true,
-                message: "Invalid fields"
+                message: "Invalid fields",
             })
             return;
         }
         let hashedPassword
         try {
-            let saltRounds = 10;
+            const saltRounds = 10;
             hashedPassword = await bcrypt.hash(req.body.password, saltRounds);
 
         } catch (e) {
@@ -45,11 +47,11 @@ class UserController {
         const newUser = new User({
             _id: new mongoose.Types.ObjectId(),
             email: req.body.email,
-            name: req.body.name,
             password: hashedPassword,
-            address2: req.body.address2,
-            address: req.body.address,
-            phone: req.body.phone,
+            // name: req.body.name,
+            // address2: req.body.address2,
+            // address: req.body.address,
+            // phone: req.body.phone,
             // role: req.body.role,
         })
 
@@ -57,6 +59,7 @@ class UserController {
         try {
             await newUser.save();
         } catch (err) {
+            console.log(err);
             next({
                 success: false,
                 isDuplicated: true,
@@ -136,7 +139,7 @@ class UserController {
                 success: true,
                 data: data
             })
-        }catch(e){
+        } catch (e) {
             res.status(400).json({
                 success: false,
                 err: e

@@ -20,6 +20,7 @@ const Login = () => {
 
 
     const HandleSubmitLoginForm = async (event) => {
+        console.log("Dang nhap");
         event.preventDefault();
         const user = {
             email: userInfor.userName,
@@ -28,20 +29,14 @@ const Login = () => {
         console.log(user);
         const response = await fetch(API, {
             method: 'POST',
-            mode: 'cors',
-            cache: 'no-cache',
-            credentials: 'same-origin',
             headers: {
                 'Content-Type': 'application/json'
             },
-            redirect: 'follow',
-            referrerPolicy: 'no-referrer',
             body: JSON.stringify(user)
         });
 
         response.json().then((result) => {
             console.log(result);
-            toggleLoginState(result.user.role)
 
             if (result.success === true) {
                 console.log("sucessfully");

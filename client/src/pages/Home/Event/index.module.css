@@ -1,6 +1,6 @@
 .event{
     display: flex !important;
-    margin-top: 40px;
+    margin-top: 120px;
 }
 
 .event-img{
@@ -47,6 +47,8 @@
 }
 
 .event-summary__des{
-    margin-top: 6px;
+    margin-top: 12px;
     margin-right: 20px;
+    text-align: justify;
+    font-size: 16px;
 }

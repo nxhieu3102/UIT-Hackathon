@@ -7,7 +7,7 @@ const Donors = () => {
     return (
         <div className={clsx(styles["body-3"])}>
             <div className={clsx(styles["body-3-top"])}>
-                Nhà đồng hành
+                Đồng hành cùng chúng tôi
             </div>
             <div className={clsx(styles["body-3-middle"])}>
             </div>

@@ -7,7 +7,7 @@ class AdminController {
     async addNewPartner(req, res, next) {
         // Check cheater
         const userId = req.body.userId;
-        const newPartner = await PartnerQueue.findOne({ user:  userId })
+        const newPartner = await PartnerQueue.findOne({ user: userId })
         if (!newPartner || newPartner.status == PartnerQueueStatusEnum.approved) {
             res.status(401)
             res.json({
@@ -50,7 +50,7 @@ class AdminController {
         try {
             await User.findOneAndUpdate(
                 {
-                    _id:  mongoose.Types.ObjectId(req.body.userId),
+                    _id: mongoose.Types.ObjectId(req.body.userId),
                     role: UserRoleEnum.partner
                 },
                 { role: UserRoleEnum.contributor }

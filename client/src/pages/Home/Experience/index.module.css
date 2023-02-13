@@ -1,5 +1,5 @@
 .experience{
-    margin-top: 50px;
+    margin-top: 120px;
 }
 
 .experience > h1{
@@ -29,9 +29,11 @@
 }
 
 .experience-item__name{
-
+    margin-top: 8px;
 }
 
 .experince-item__des{
+    margin-top: 8px;
     width: 415px;
+    text-align: justify;
 }

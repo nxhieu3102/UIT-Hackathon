@@ -8,7 +8,7 @@ const Intro = () => {
         <div className={clsx(styles["body-1"])}>
             <div className={clsx(styles["body-1-left"])}>
                 <div className={clsx(styles["body-1-slogan"])}>
-                    <p className={clsx(styles["body-1-slogan-text"])}>Slogan</p>
+                    <p className={clsx(styles["body-1-slogan-text"])}>CollectMe </p>
                 </div>
                 <div className={clsx(styles["body-1-get-started"])}>
                     <Link to ='/SignUp' className={clsx(styles["get-started"])} role="get-started">Tham gia</Link>

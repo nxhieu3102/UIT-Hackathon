@@ -23,10 +23,9 @@ app.use(morgan('combined'));
 app.use(cors());  //avoid "cors" error
 app.use("/api", router);
 
-
-app.get('*', (req, res) => {
-    console.log("hello world!");
-});
+// app.get('*', (req, res) => {
+    
+// });
 
 app.listen(PORT, () => {
     console.log(`Server listening on ${PORT}`);

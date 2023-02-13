@@ -9,12 +9,12 @@ const SignUp = () => {
     const [message, setMessage] = useState('temp')
     const [confirmPassWord, setConfirmPassWord] = useState('')
     const [userInfor, setUserInfor] = useState({
-        userName: '',
+        email: '',
         passWord: '',
     })
 
-    const toggleUserInfor = (userName, passWord) => {
-        const newInfor = { userName: userName, passWord: passWord }
+    const toggleUserInfor = (email, passWord) => {
+        const newInfor = { email: email, passWord: passWord }
         setUserInfor(userInfor => newInfor)
     }
 
@@ -25,7 +25,7 @@ const SignUp = () => {
 
     const HandleChangePassWord = (event) => {
         event.preventDefault();
-        toggleUserInfor(userInfor.userName, event.target.value)
+        toggleUserInfor(userInfor.email, event.target.value)
     }
 
     const HandleChangePassConfirmWord = (event) => {
@@ -33,27 +33,23 @@ const SignUp = () => {
         setConfirmPassWord(event.target.value);
     }
 
-    const API = 'http://localhost:3002/api/user/signup'
-    const { userName, passWord } = userInfor;
+    const API = 'http://localhost:3001/api/user/signup'
+    const { email, passWord } = userInfor;
 
     const HandleSubmitSignUp = async (event) => {
         const newUser = {
-            username: userInfor.userName,
-            password: userInfor.passWord,
-            avatar: "this is avatar",
-            address: "i dont know"
+            email: userInfor.email,
+            password: userInfor.passWord
         }
+
+        console.log(newUser);
+
         event.preventDefault();
         const response = await fetch(API, {
             method: 'POST',
-            mode: 'cors',
-            cache: 'no-cache',
-            credentials: 'same-origin',
             headers: {
                 'Content-Type': 'application/json'
             },
-            redirect: 'follow',
-            referrerPolicy: 'no-referrer',
             body: JSON.stringify(newUser)
         });
 
@@ -73,7 +69,7 @@ const SignUp = () => {
             <div className={clsx(styles["form-container"], styles["sign-in-container"])}>
                 <form onSubmit={HandleSubmitSignUp}>
                     <h1>Đăng kí</h1>
-                    <input value={userName} spellCheck='false' placeholder="Email" type="email" onChange={HandleChangeName} name='username' />
+                    <input value={email} spellCheck='false' placeholder="Email" type="email" onChange={HandleChangeName} name='email' />
                     <input value={passWord} placeholder="Mật khẩu" type="password" onChange={HandleChangePassWord} name='password' />
                     <input value={confirmPassWord} placeholder="Xác nhận mật khẩu" type="password" onChange={HandleChangePassConfirmWord} name='confirmPassword' />
                     <Link to='/'>Quên mật khẩu</Link>
