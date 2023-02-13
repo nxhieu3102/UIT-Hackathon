@@ -27,7 +27,6 @@ function Home() {
     //         }
     return (
         <Fragment>
-            
             <Intro/>
             <Target/>
             <Event/>

@@ -10,8 +10,6 @@ import account from '~/assets/images/Dashboard/account.png'
 const Header = () => {
     const { loginState, toggleLoginState } = useContext(loginStateContext);
 
-
-
     return (
         <Fragment>
             <div className={clsx(styles["navbar"])}>
@@ -41,10 +39,7 @@ const Header = () => {
                 {loginState === -1 && <Link to='/Login' className={clsx(styles["login-item"])}>
                     <button className={clsx(styles["login-btn"])} >Đăng nhập</button>
                 </Link>}
-
             </div>
-
-
         </Fragment>
     );
 }

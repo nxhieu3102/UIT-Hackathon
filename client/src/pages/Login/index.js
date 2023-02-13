@@ -1,27 +1,28 @@
 import { Fragment, useState, useContext } from "react"
 import styles from './index.module.css'
 import clsx from 'clsx';
-import { Link, redirect, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { loginStateContext } from '~/provider/LoginProvider'
+import axios from 'axios';
+
+const API = 'http://localhost:3001/api/user/login'
 
 const Login = () => {
+    const navigate = useNavigate()
     const { loginState, toggleLoginState } = useContext(loginStateContext);
     const [message, setMessage] = useState('temp')
-    const API = 'http://localhost:3001/api/user/login'
+
     const [userInfor, setUserInfor] = useState({
         userName: '',
         passWord: '',
     })
 
-    const navigate = useNavigate()
-
-  
     const { userName, passWord } = userInfor;
-
 
     const HandleSubmitLoginForm = async (event) => {
         console.log("Dang nhap");
         event.preventDefault();
+<<<<<<< HEAD
         const user = {
             email: userInfor.userName,
             password: userInfor.passWord
@@ -47,6 +48,23 @@ const Login = () => {
             }
         })
         toggleUserInfor('', '')
+=======
+        axios.post(API, { userName, passWord })
+            .then(response => {
+                toggleLoginState(response.user.role)
+                if (response.success === true) {
+                    console.log("sucessfully");
+                    toggleLoginState(response.user.role)
+                    navigate('/')
+                } else {
+                    setMessage("Dang nhap that bai")
+                }
+            })
+            .catch(error => {
+                console.log(error);
+            });
+        toggleUserInfor(',')
+>>>>>>> d33f41e97a14c14385396d6f687e847b4059eafb
     }
 
     const toggleUserInfor = (userName, passWord) => {
@@ -73,6 +91,7 @@ const Login = () => {
                         <input value={userName} spellCheck='false' placeholder="Email" type="Email" onChange={HandleChangeName} name='username' required />
                         <input value={passWord} placeholder="Mật khẩu" type="password" onChange={HandleChangePassWord} name='password' required />
                         <Link to='/'>Quên mật khẩu</Link>
+                        {message === 'temp' ? ' ' : <p>message</p>}
                         <button type="submit">Đăng nhập</button>
                     </form>
                 </div>

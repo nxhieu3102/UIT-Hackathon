@@ -1,13 +1,18 @@
 .footer {
     background-color: #65a768;
     padding: 50px 200px;
+<<<<<<< HEAD
     color: #737373;
     position: relative;;
+=======
+    color: white;
+    position: relative;
+>>>>>>> d33f41e97a14c14385396d6f687e847b4059eafb
 }
 
-.footer a{
+.footer a {
     text-decoration: none;
-    color: #737373;
+    color: white;
 }
 
 .about {
@@ -15,22 +20,29 @@
     justify-content: space-between;
 }
 
-.about-us {
-}
 .about-us > h1 {
     color: white;
     font-weight: 400;
 }
-.quick-access {
-}
+
 .quick-access > h1 {
     color: white;
     font-weight: 400;
 }
-.classify {
 
-}
+
+
 .classify > h1 {
     color: white;
     font-weight: 400;
+}
+
+li {
+    list-style-type: none;
+    text-align: left;
+    margin-top: 8px;
+}
+
+.logo{
+    width: 150px;
 }

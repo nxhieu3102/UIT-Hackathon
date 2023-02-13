@@ -43,7 +43,7 @@
   /* RESET */
   text-decoration: none;
   line-height: 1;
-
+  cursor: pointer;
   position: relative;
   z-index: 0;
   padding: 5px 5px;
