@@ -1,10 +1,5 @@
-<<<<<<< HEAD
 .target {
     margin-top: 80px;
-=======
-.target{
-   margin-top: 120px;
->>>>>>> d33f41e97a14c14385396d6f687e847b4059eafb
 }
 
 .title {
@@ -13,7 +8,6 @@
 }
 
 .title--green {
-<<<<<<< HEAD
     font-size: 4.8rem;
     color: #15a83e;
 }
@@ -22,16 +16,6 @@
     margin-top: 12px;
     text-align: center;
     font-size: 3.2rem;
-=======
-    color: #15a83e;
-    font-size: 4.8rem;
-}
-
-.text {
-    text-align: center;
-    font-size: 3.2rem;
-    margin-top: 12px;
->>>>>>> d33f41e97a14c14385396d6f687e847b4059eafb
 }
 
 .targets {
@@ -56,11 +40,7 @@
 .target-element__title {
     color: #0b862d;
     font-size: 2.4rem;
-<<<<<<< HEAD
     margin-top: 8px;
-=======
-    margin-top: 12px;
->>>>>>> d33f41e97a14c14385396d6f687e847b4059eafb
     font-weight: 500;
 }
 

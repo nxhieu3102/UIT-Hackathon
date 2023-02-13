@@ -22,7 +22,6 @@ const Login = () => {
     const HandleSubmitLoginForm = async (event) => {
         console.log("Dang nhap");
         event.preventDefault();
-<<<<<<< HEAD
         const user = {
             email: userInfor.userName,
             password: userInfor.passWord
@@ -48,23 +47,6 @@ const Login = () => {
             }
         })
         toggleUserInfor('', '')
-=======
-        axios.post(API, { userName, passWord })
-            .then(response => {
-                toggleLoginState(response.user.role)
-                if (response.success === true) {
-                    console.log("sucessfully");
-                    toggleLoginState(response.user.role)
-                    navigate('/')
-                } else {
-                    setMessage("Dang nhap that bai")
-                }
-            })
-            .catch(error => {
-                console.log(error);
-            });
-        toggleUserInfor(',')
->>>>>>> d33f41e97a14c14385396d6f687e847b4059eafb
     }
 
     const toggleUserInfor = (userName, passWord) => {
